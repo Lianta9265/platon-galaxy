@@ -1,51 +1,65 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Платон спасает Галактику Вводных Слов</title>
-  <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
-    html, body {
-      height: 100%;
-      overflow-x: hidden;
-      font-family: "Trebuchet MS", sans-serif;
-      color: white;
-      background: black;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Платон спасает галактику от лжевводных</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
 
-    /* --- Фон --- */
-    #background {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -2;
-      background-size: cover;
-      background-position: center;
-      transition: background-image 2s ease-in-out;
-    }
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
 
-    /* --- Платон --- */
-    #platon {
-      position: absolute;
-      width: 240px;
-      left: -300px;
-      top: 50%;
-      transform: translateY(-50%);
-      animation: flyIn 5s ease-in-out forwards;
-    }
+        #parrot {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            width: 250px;
+            z-index: 2;
+        }
 
-    @keyframes flyIn {
-      0% { left: -300px; opacity: 0; }
-      30% { left: 20%; opacity: 1; }
-      60% { left: 40%; opacity: 1; }
-      100% { left: 120%; opacity: 0; }
-    }
+        #danger {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            border-radius: 15px;
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
 
-    main {
-      position: relative;
-      text-align: center;
-      z-index: 2;
-      padding: 60px 15px;
-      max-width: 900px;
+        #danger.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <img id="background" src="img/platon1.gif" alt="Космос">
+    <img id="parrot" src="img/platon3.gif" alt="Попугай Платон">
+    <img id="danger" src="img/platon4.jpg" alt="Опасность!">
 
+    <script>
+        // --- анимация фона ---
+        const backgrounds = ["img/platon1.gif", "img/platon2.gif"];
+        let currentBg = 0;
+        const bgElement = document.getElementById("background");
+
+        setInterval(() => {
+            currentBg = (currentBg + 1) % backgrounds.length;
+            bgElement.src = backgrounds[currentBg];
+        }, 7000); // каждые 7 секунд смена космоса
+
+        // -
